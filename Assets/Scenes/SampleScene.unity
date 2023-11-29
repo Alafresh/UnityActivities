@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 17e54e947ce4576439d8c1421c9a55be, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.0029809817, g: 0.022626625, b: 0.09404443, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,8 +209,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.52, y: 0.05, z: -28.39}
+  m_LocalRotation: {x: -0.025177192, y: -0.7079217, z: -0.02528568, w: 0.705389}
+  m_LocalPosition: {x: 70.13607, y: 3.3455353, z: 28.891068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -488,7 +488,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb918c84bf3bee441bb14df103e4eac8, type: 2}
+  - {fileID: 2100000, guid: 0f33678dcf8593642ae6da2b98ba6da7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 1274819193}
   serializedVersion: 2
   m_LocalRotation: {x: 0.16043505, y: -0.68945044, z: 0.16082247, w: 0.68778986}
-  m_LocalPosition: {x: -59.5, y: 7.2179327, z: 12.2}
+  m_LocalPosition: {x: -59.5, y: 7.2, z: 49.1}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -595,6 +595,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SistemaSolar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657377104380331316, guid: d3863e532aedc184eb6078db2b33107a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657377104380331316, guid: d3863e532aedc184eb6078db2b33107a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415073797252471711, guid: d3863e532aedc184eb6078db2b33107a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415073797252471711, guid: d3863e532aedc184eb6078db2b33107a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
