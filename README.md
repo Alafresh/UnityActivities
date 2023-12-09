@@ -1,7 +1,7 @@
-# Repositorio de la Academia Polygonus
+# Repositorio de Aprendizaje Polygonus
 
 ## Descripción
-Bienvenidos al repositorio de la Academia Polygonus. Este espacio está dedicado a consolidar y expandir los conocimientos adquiridos en los cursos de física, geometría y programación. Aquí encontrarás una variedad de proyectos, ejemplos de código y recursos educativos diseñados para reforzar y aplicar conceptos teóricos en un entorno práctico y interactivo.
+Bienvenidos al repositorio de Aprendizaje Polygonus. Este espacio está dedicado a consolidar y expandir los conocimientos adquiridos en los cursos de física, geometría y programación. Aquí encontrarás una variedad de proyectos, ejemplos de código y recursos educativos diseñados para reforzar y aplicar conceptos teóricos en un entorno práctico y interactivo.
 
 ## Estructura del Repositorio
 - **Física:** Proyectos y ejercicios relacionados con la dinámica, cinemática, y mecánica de fluidos, aplicados en entornos virtuales.
