@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float velocidad = 5f;
+    public Transform target; // La nave espacial a seguir
+    public Vector3 offset; // Desplazamiento de la cámara respecto al objetivo
+    public float smoothSpeed = 0.125f; // Velocidad con la que la cámara sigue al objetivo
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        float movimientoHorizontal = Input.GetAxis("Horizontal");
-        float movimientoVertical = Input.GetAxis("Vertical");
+        Vector3 desiredPosition = target.position + offset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = smoothedPosition;
 
-        Vector3 movimiento = new Vector3(movimientoHorizontal, 0f, movimientoVertical);
-
+        transform.LookAt(target);
     }
 }
