@@ -27,7 +27,6 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
-
         public float LookSensitivity = 1f;
 
         public AudioClip LandingAudioClip;
@@ -389,6 +388,10 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+        public void SetSensitivity(float newSensitivity)
+        {
+            LookSensitivity = newSensitivity;
         }
     }
 }

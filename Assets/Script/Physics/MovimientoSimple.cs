@@ -11,6 +11,5 @@ public class MovimientoSimple : MonoBehaviour
         float movimientoHorizontal = Input.GetAxis("Horizontal");
         float movimientoVertical = Input.GetAxis("Vertical");
 
-        Vector3 movimiento = new Vector3();
     }
 }
