@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23924345589650348}
   - component: {fileID: 64592810102794798}
   m_Layer: 0
-  m_Name: SM_Wep_Bullet_Ammo_01
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
