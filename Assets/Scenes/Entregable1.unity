@@ -33588,6 +33588,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1474544461}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1474606998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474606999}
+  m_Layer: 8
+  m_Name: SpawnBulletPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1474606999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474606998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.3, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1952229209524758274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485058085
 GameObject:
   m_ObjectHideFlags: 0
@@ -47368,7 +47399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5018301988309817625, guid: 7f6ac5ccc6f9a79498c7881faf38f85a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1474606999}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4705679694728310511, guid: 7f6ac5ccc6f9a79498c7881faf38f85a,
         type: 3}
@@ -47435,6 +47470,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   debugTransform: {fileID: 302545934}
+  pfBulletProjectile: {fileID: 4084649257871824, guid: 4700ce61fd21e32439977dd4e8211f37,
+    type: 3}
+  spawnBulletPosition: {fileID: 1474606999}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
