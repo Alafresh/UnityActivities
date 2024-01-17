@@ -27,10 +27,12 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height /2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        Transform hitTransform = null;
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderMask))
         {
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
+            hitTransform = raycastHit.transform;
         }
         if (_starterAssetsInputs.aim)
         {
@@ -49,10 +51,13 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetSensitivity(_normalSensitivity);
         }
         if (_starterAssetsInputs.shoot) 
-        { 
-            Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-            _starterAssetsInputs.shoot = false;
+        {
+            if (hitTransform != null)
+            {
+                Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+                Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+                _starterAssetsInputs.shoot = false;
+            }
         }
         
     }

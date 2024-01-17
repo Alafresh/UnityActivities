@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletProjectible : MonoBehaviour
 {
+    [SerializeField] private Transform _vfxBulletImpact;
+    [SerializeField] private Transform _vfxBlood;
     private Rigidbody _bulletRigidbody;
 
     private void Awake()
@@ -12,11 +14,19 @@ public class BulletProjectible : MonoBehaviour
     }
     private void Start()
     {
-        float speed = 10f;
+        float speed = 40f;
         _bulletRigidbody.velocity = transform.forward * speed;
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<ZombieTarget>() != null)
+        {
+            Instantiate(_vfxBlood, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(_vfxBulletImpact, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

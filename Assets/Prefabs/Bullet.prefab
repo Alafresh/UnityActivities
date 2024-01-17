@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f82d50288801524faf9f196748e8704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vfxBulletImpact: {fileID: 4528989975201842, guid: 4a049bbef79ee7845b541e2d0d83b4cc,
+    type: 3}
+  _vfxBlood: {fileID: 499110, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
 --- !u!1001 &4881950114481651797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4209795057775410, guid: 11a01027c67e43147870f6fcda4024c8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4209795057775410, guid: 11a01027c67e43147870f6fcda4024c8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -181,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4209795057775410, guid: 11a01027c67e43147870f6fcda4024c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.2271
+      value: -0.1604
       objectReference: {fileID: 0}
     - target: {fileID: 4209795057775410, guid: 11a01027c67e43147870f6fcda4024c8, type: 3}
       propertyPath: m_LocalRotation.w
