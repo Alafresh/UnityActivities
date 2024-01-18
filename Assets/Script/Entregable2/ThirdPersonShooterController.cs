@@ -16,10 +16,12 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private ThirdPersonController _thirdPersonController;
     private StarterAssetsInputs _starterAssetsInputs;
+    private Animator _animator;
     private void Awake()
     {
        _thirdPersonController = GetComponent<ThirdPersonController>();
        _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+       _animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -38,6 +40,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             _aimVirtualCamera.gameObject.SetActive(true);
             _thirdPersonController.SetSensitivity(_aimSensitivity);
+            _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
 
             Vector3 worldAimTarget = mouseWorldPosition;
             worldAimTarget.y = transform.position.y;
@@ -49,6 +52,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             _aimVirtualCamera.gameObject.SetActive(false);
             _thirdPersonController.SetSensitivity(_normalSensitivity);
+            _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
         if (_starterAssetsInputs.shoot) 
         {
