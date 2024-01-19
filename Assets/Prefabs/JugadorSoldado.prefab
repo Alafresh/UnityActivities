@@ -718,8 +718,8 @@ Transform:
   m_GameObject: {fileID: 3685576378068376764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.105, y: -0.001, z: -0.227}
-  m_LocalScale: {x: 0.099999905, y: 0.099999964, z: 0.09999991}
+  m_LocalPosition: {x: -0.017, y: 0.474, z: -0.136}
+  m_LocalScale: {x: 1, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3301380221115695245}
@@ -1309,12 +1309,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4591128204440139838}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.3, z: 1.5}
+  m_LocalRotation: {x: -0.50000006, y: -0.50000006, z: -0.49999994, w: 0.49999994}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5018301988309817625}
+  m_Father: {fileID: 5435281411704050459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4705679694728310511
 GameObject:
@@ -1355,7 +1355,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7035159319332508920}
-  - {fileID: 280879066952051249}
   - {fileID: 987373118820539698}
   - {fileID: 8903940974940482867}
   - {fileID: 5282833930369599032}
@@ -1371,7 +1370,7 @@ Animator:
   m_GameObject: {fileID: 4705679694728310511}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bd46112c78e02dc4b938c86e8b8c1116, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9827a7d2c27ad644f9f623951d0f4126, type: 2}
+  m_Controller: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1763,8 +1762,8 @@ Transform:
   - {fileID: 7607363983659834064}
   - {fileID: 1411105847318155284}
   - {fileID: 5435281411704050459}
-  - {fileID: 4925999966051609369}
   - {fileID: 7435926535401346901}
+  - {fileID: 4925999966051609369}
   m_Father: {fileID: 1110594093028713883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4942454214982859843
@@ -2810,6 +2809,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 857316990052385913}
+    - targetCorrespondingSourceObject: {fileID: 4645375280533522, guid: be20da268d490c44c8460e91a7cd3a44,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 280879066952051249}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be20da268d490c44c8460e91a7cd3a44, type: 3}
 --- !u!4 &5435281411704050459 stripped

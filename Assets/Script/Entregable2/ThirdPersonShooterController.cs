@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using StarterAssets;
+using UnityEngine.Animations.Rigging;
+    
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
+    [SerializeField] private Rig _aimRig;
     [SerializeField] private CinemachineVirtualCamera _aimVirtualCamera;
     [SerializeField] private float _normalSensitivity;
     [SerializeField] private float _aimSensitivity;
@@ -17,6 +20,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     private ThirdPersonController _thirdPersonController;
     private StarterAssetsInputs _starterAssetsInputs;
     private Animator _animator;
+    private float _aimRigWeight;
     private void Awake()
     {
        _thirdPersonController = GetComponent<ThirdPersonController>();
@@ -47,12 +51,14 @@ public class ThirdPersonShooterController : MonoBehaviour
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+            _aimRigWeight = 1f;
         }
         else
         {
             _aimVirtualCamera.gameObject.SetActive(false);
             _thirdPersonController.SetSensitivity(_normalSensitivity);
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+            _aimRigWeight = 0f;
         }
         if (_starterAssetsInputs.shoot) 
         {
@@ -63,6 +69,6 @@ public class ThirdPersonShooterController : MonoBehaviour
                 _starterAssetsInputs.shoot = false;
             }
         }
-        
+        _aimRig.weight = Mathf.Lerp(_aimRig.weight, _aimRigWeight, Time.deltaTime * 20f);
     }
 }
