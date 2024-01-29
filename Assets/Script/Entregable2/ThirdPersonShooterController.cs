@@ -6,6 +6,7 @@ using StarterAssets;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Pool;
 using UnityEditor;
+using UnityEngine.UIElements;
 
 // Controlador de personaje en tercera persona para un juego de disparos.
 public class ThirdPersonShooterController : MonoBehaviour
@@ -113,13 +114,32 @@ public class ThirdPersonShooterController : MonoBehaviour
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
             _aimRigWeight = 0f;
         }
+        
+        // Ajustar el peso de la animación de apuntar gradualmente.
+        _aimRig.weight = Mathf.Lerp(_aimRig.weight, _aimRigWeight, Time.deltaTime * 20f);
+    }
+    private void FixedUpdate()
+    {
+        // Variables para manejar la posición del ratón en el mundo y el objeto golpeado por el raycast.
+        Vector3 mouseWorldPosition = Vector3.zero;
+
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        Transform hitTransform = null;
+        // Raycast para detectar colisiones con la capa especificada.
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderMask))
+        {
+            debugTransform.position = raycastHit.point;
+            mouseWorldPosition = raycastHit.point;
+            hitTransform = raycastHit.transform;
+        }
         // Lógica para disparar.
-        if (_starterAssetsInputs.shoot) 
+        if (_starterAssetsInputs.shoot)
         {
             if (hitTransform != null && _objectPool != null && Time.time > _nextTimeToShoot)
-            {    
+            {
                 //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-                
+
                 BulletProjectible bulletProjectible = _objectPool.Get();
 
                 if (bulletProjectible != null)
@@ -132,11 +152,9 @@ public class ThirdPersonShooterController : MonoBehaviour
 
                     _nextTimeToShoot = Time.time + cooldown;
                 }
-                
+
                 _starterAssetsInputs.shoot = false;
             }
         }
-        // Ajustar el peso de la animación de apuntar gradualmente.
-        _aimRig.weight = Mathf.Lerp(_aimRig.weight, _aimRigWeight, Time.deltaTime * 20f);
     }
 }

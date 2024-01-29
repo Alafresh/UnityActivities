@@ -34,13 +34,13 @@ public class BulletProjectible : MonoBehaviour
         {
             // Crea el efecto de sangre y destruye el proyectil.
             GameObject vfx = Instantiate(_vfxBlood, transform.position, Quaternion.identity);
-            Destroy(vfx, 5f);
+            Destroy(vfx, 2f);
         }
         // Si el proyectil no está dentro del volumen, crea el efecto de impacto de bala.
         else if (!IsWithinVolume())
         {
             GameObject vfx = Instantiate(_vfxBulletImpact, transform.position, Quaternion.identity);
-            Destroy(vfx, 5f);
+            Destroy(vfx, 2f);
         }
         // Nota: Si el proyectil está dentro del volumen, no se hace nada aquí.
     }
@@ -84,6 +84,7 @@ public class BulletProjectible : MonoBehaviour
         // Reset rigidbody
         _bulletRigidbody.velocity = Vector3.zero;
         _bulletRigidbody.angularVelocity = Vector3.zero;
+
         objectPool.Release(this);
 
 
