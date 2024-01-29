@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.Pool;
+using UnityEditor;
 
 // Controlador de personaje en tercera persona para un juego de disparos.
 public class ThirdPersonShooterController : MonoBehaviour
@@ -15,8 +17,22 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private float _aimSensitivity; // Sensibilidad del control mientras se apunta.
     [SerializeField] private LayerMask aimColliderMask = new LayerMask(); // Máscara de colisión para raycasting al apuntar.
     [SerializeField] private Transform debugTransform; // Transform para depuración.
-    [SerializeField] private Transform pfBulletProjectile; // Prefab del proyectil.
+
+    [Tooltip("Prefab to shoot")]
+    [SerializeField] private BulletProjectible pfBulletProjectile; // Prefab del proyectil.
+    [Tooltip("End point of gun where shots appear")]
     [SerializeField] private Transform spawnBulletPosition; // Posición de generación del proyectil.
+    [Tooltip("Time between shots")]
+    [SerializeField] private float cooldown = 0.1f;
+
+    private IObjectPool<BulletProjectible> _objectPool;
+
+    // throw an exception if we try to return an existing item, already in the pool
+    [SerializeField] private bool _collectionCheck = true;
+    [SerializeField] private int _defaultCapacity = 50;
+    [SerializeField] private int _maxSize = 100;
+
+    private float _nextTimeToShoot;
 
     // Variables privadas para almacenar referencias a otros componentes.
     private ThirdPersonController _thirdPersonController; // Controlador de personaje en tercera persona.
@@ -26,11 +42,37 @@ public class ThirdPersonShooterController : MonoBehaviour
     // Awake se llama cuando se instancia el script.
     private void Awake()
     {
-       // Obtener referencias a otros componentes en el mismo GameObject.
-       _thirdPersonController = GetComponent<ThirdPersonController>();
-       _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
-       _animator = GetComponent<Animator>();
+        // Obtener referencias a otros componentes en el mismo GameObject.
+        _thirdPersonController = GetComponent<ThirdPersonController>();
+        _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        _animator = GetComponent<Animator>();
+        _objectPool = new ObjectPool<BulletProjectible>(CreateProjectile, OnGetFromPool, OnReleaseToPool,
+            OnDestroyPooledObject, _collectionCheck, _defaultCapacity, _maxSize);
     }
+
+    private BulletProjectible CreateProjectile()
+    {
+        BulletProjectible projectileInstance = Instantiate(pfBulletProjectile);
+        projectileInstance.ObjectPool = _objectPool;
+        return projectileInstance;
+    }
+
+    private void OnGetFromPool(BulletProjectible projectileInstance)
+    {
+        projectileInstance.gameObject.SetActive(true);
+    }
+
+    private void OnReleaseToPool(BulletProjectible projectileInstance)
+    {
+        projectileInstance.gameObject.SetActive(false);
+        projectileInstance.transform.position = spawnBulletPosition.position;
+    }
+
+    private void OnDestroyPooledObject(BulletProjectible projectileInstance)
+    {
+        Destroy(projectileInstance.gameObject);
+    }
+
     // Update se llama una vez por Frame.
     private void Update()
     {
@@ -74,11 +116,23 @@ public class ThirdPersonShooterController : MonoBehaviour
         // Lógica para disparar.
         if (_starterAssetsInputs.shoot) 
         {
-            if (hitTransform != null)
-            {
-                // Crear y lanzar un proyectil en la dirección del apuntado.
-                Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-                Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            if (hitTransform != null && _objectPool != null && Time.time > _nextTimeToShoot)
+            {    
+                //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+                
+                BulletProjectible bulletProjectible = _objectPool.Get();
+
+                if (bulletProjectible != null)
+                {
+                    // Crear y lanzar un proyectil en la dirección del apuntado.
+                    Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+                    Vector3 force = aimDir * 400f;
+                    bulletProjectible.Activate(spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up), force);
+                    bulletProjectible.Deactivate();
+
+                    _nextTimeToShoot = Time.time + cooldown;
+                }
+                
                 _starterAssetsInputs.shoot = false;
             }
         }

@@ -147,9 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f82d50288801524faf9f196748e8704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vfxBulletImpact: {fileID: 4528989975201842, guid: 4a049bbef79ee7845b541e2d0d83b4cc,
+  _vfxBulletImpact: {fileID: 1614572127005044, guid: 4a049bbef79ee7845b541e2d0d83b4cc,
     type: 3}
-  _vfxBlood: {fileID: 499110, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
+  _vfxBlood: {fileID: 166404, guid: 78e1c8c5b281b8b439229473779ac9aa, type: 3}
+  _timeOutDelay: 3
 --- !u!1001 &4881950114481651797
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 // Clase para controlar el comportamiento de los proyectiles de bala en el juego.
 public class BulletProjectible : MonoBehaviour
 {
     // Variables para efectos visuales de impacto y sangre, asignables desde el inspector de Unity.
-    [SerializeField] private Transform _vfxBulletImpact; // Efecto de impacto de bala.
-    [SerializeField] private Transform _vfxBlood; // Efecto de sangre.
+    [SerializeField] private GameObject _vfxBulletImpact; // Efecto de impacto de bala.
+    [SerializeField] private GameObject _vfxBlood; // Efecto de sangre.
 
+    [SerializeField] private float _timeOutDelay = 3f;
+    private IObjectPool<BulletProjectible> objectPool;
+    public IObjectPool<BulletProjectible> ObjectPool { set => objectPool = value; }
+  
     // Variables internas para el cuerpo rígido del proyectil y referencia al volumen local.
     private Rigidbody _bulletRigidbody;
     private GameObject _localVolume;
@@ -21,14 +26,6 @@ public class BulletProjectible : MonoBehaviour
         _localVolume = GameObject.Find("LocalVolume");
     }
 
-    // Start se llama antes del primer frame de actualización.
-    private void Start()
-    {
-        // Define la velocidad del proyectil y aplica esa velocidad al cuerpo rígido.
-        float speed = 40f; // Velocidad del proyectil.
-        _bulletRigidbody.velocity = transform.forward * speed; // Asigna velocidad hacia adelante.
-    }
-
     // OnTriggerEnter se llama cuando el proyectil entra en un trigger collider.
     private void OnTriggerEnter(Collider other)
     {
@@ -36,14 +33,14 @@ public class BulletProjectible : MonoBehaviour
         if (other.GetComponent<ZombieTarget>() != null)
         {
             // Crea el efecto de sangre y destruye el proyectil.
-            Instantiate(_vfxBlood, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            GameObject vfx = Instantiate(_vfxBlood, transform.position, Quaternion.identity);
+            Destroy(vfx, 5f);
         }
         // Si el proyectil no está dentro del volumen, crea el efecto de impacto de bala.
         else if (!IsWithinVolume())
         {
-            Instantiate(_vfxBulletImpact, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            GameObject vfx = Instantiate(_vfxBulletImpact, transform.position, Quaternion.identity);
+            Destroy(vfx, 5f);
         }
         // Nota: Si el proyectil está dentro del volumen, no se hace nada aquí.
     }
@@ -64,5 +61,31 @@ public class BulletProjectible : MonoBehaviour
     {
         // Retorna true si el proyectil está dentro de los límites del collider del volumen.
         return _localVolume.GetComponent<Collider>().bounds.Contains(transform.position);
+    }
+
+    public void Activate(Vector3 position, Quaternion rotation, Vector3 force)
+    {
+        transform.SetPositionAndRotation(position, rotation);
+        _bulletRigidbody.velocity = Vector3.zero; // Resetear la velocidad por si acaso
+        _bulletRigidbody.AddForce(force, ForceMode.Acceleration);
+        // Resto de la inicialización necesaria
+    }
+
+
+    public void Deactivate()
+    {      
+        StartCoroutine(DeactivateRoutine(_timeOutDelay));
+    }
+
+    IEnumerator DeactivateRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Reset rigidbody
+        _bulletRigidbody.velocity = Vector3.zero;
+        _bulletRigidbody.angularVelocity = Vector3.zero;
+        objectPool.Release(this);
+
+
     }
 }

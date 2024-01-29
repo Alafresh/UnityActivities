@@ -50706,6 +50706,12 @@ PrefabInstance:
       propertyPath: _aimVirtualCamera
       value: 
       objectReference: {fileID: 3408869452992149402}
+    - target: {fileID: 5416797828768390367, guid: 7f6ac5ccc6f9a79498c7881faf38f85a,
+        type: 3}
+      propertyPath: pfBulletProjectile
+      value: 
+      objectReference: {fileID: -2549332160571073133, guid: 4700ce61fd21e32439977dd4e8211f37,
+        type: 3}
     - target: {fileID: 5963350492774638796, guid: 7f6ac5ccc6f9a79498c7881faf38f85a,
         type: 3}
       propertyPath: m_WarningMessage
