@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class MapArea : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private List<MapAreaCollider> m_Colliders;
+    private float progress;
+    private void Awake()
     {
-        if(other.GetComponent<PlayerMapArea>() != null)
+        m_Colliders = new List<MapAreaCollider>();
+
+        foreach(Transform child in transform)
         {
-            Debug.Log("Jugador entro");
+            MapAreaCollider mapAreaCollider = child.GetComponent<MapAreaCollider>();
+            if (mapAreaCollider != null)
+            {
+                m_Colliders.Add(mapAreaCollider);
+            }
+        }
+    }
+    private void Update()
+    {
+        foreach(MapAreaCollider mapAreaCollider in m_Colliders)
+        {
+
         }
     }
 }

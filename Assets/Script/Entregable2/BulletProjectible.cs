@@ -16,14 +16,14 @@ public class BulletProjectible : MonoBehaviour
   
     // Variables internas para el cuerpo rígido del proyectil y referencia al volumen local.
     private Rigidbody _bulletRigidbody;
-    private GameObject _localVolume;
+    private GameObject[] _localVolume = new GameObject[3];
 
     // Awake se llama cuando se instancia el script.
     private void Awake()
     {
         // Inicializa el cuerpo rígido del proyectil y busca el objeto "LocalVolume" en la escena.
         _bulletRigidbody = GetComponent<Rigidbody>();
-        _localVolume = GameObject.Find("LocalVolume");
+        _localVolume = GameObject.FindGameObjectsWithTag("LocalVolume");
     }
 
     // OnTriggerEnter se llama cuando el proyectil entra en un trigger collider.
@@ -50,7 +50,7 @@ public class BulletProjectible : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Comprueba si el proyectil sale del volumen local.
-        if (other.gameObject == _localVolume)
+        if (other.gameObject.CompareTag("LocalVolume"))
         {
             // Destruye el proyectil al salir del volumen.
             Destroy(gameObject);
@@ -61,7 +61,14 @@ public class BulletProjectible : MonoBehaviour
     bool IsWithinVolume()
     {
         // Retorna true si el proyectil está dentro de los límites del collider del volumen.
-        return _localVolume.GetComponent<Collider>().bounds.Contains(transform.position);
+        foreach (var v in _localVolume)
+        {
+            if (v.GetComponent<Collider>().bounds.Contains(transform.position))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void Activate(Vector3 position, Quaternion rotation, Vector3 force)

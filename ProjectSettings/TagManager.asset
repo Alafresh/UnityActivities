@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ObjectoCae
   - CinemachineTarget
+  - LocalVolume
   layers:
   - Default
   - TransparentFX
