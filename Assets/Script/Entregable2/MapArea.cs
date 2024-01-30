@@ -21,9 +21,10 @@ public class MapArea : MonoBehaviour
     }
     private void Update()
     {
+        int playerCountInsideMapArea = 0;
         foreach(MapAreaCollider mapAreaCollider in m_Colliders)
         {
-
+            playerCountInsideMapArea += mapAreaCollider.GetPlayerMapAreasList().Count;
         }
     }
 }
