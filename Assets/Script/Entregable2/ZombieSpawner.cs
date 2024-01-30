@@ -7,7 +7,7 @@ public class ZombieSpawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Spawn", 2f, 2f);
+        InvokeRepeating("Spawn", 5f, 5f);
     }
 
     private void Spawn()
