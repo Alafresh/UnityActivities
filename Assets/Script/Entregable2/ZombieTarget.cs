@@ -39,6 +39,8 @@ public class ZombieTarget : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            _anim.SetBool("walk", false);
+            _target.GetComponent<Player>().GetDamage();
             Debug.Log("Muere");
         }
     }

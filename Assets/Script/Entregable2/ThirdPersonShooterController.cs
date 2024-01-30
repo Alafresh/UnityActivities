@@ -5,8 +5,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Pool;
-using UnityEditor;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 // Controlador de personaje en tercera persona para un juego de disparos.
 public class ThirdPersonShooterController : MonoBehaviour
@@ -43,7 +42,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     // Awake se llama cuando se instancia el script.
     private void Awake()
     {
-        // Obtener referencias a otros componentes en el mismo GameObject.
+        // Obtener referencias a otros componentes en el mismo GameObject. 
         _thirdPersonController = GetComponent<ThirdPersonController>();
         _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         _animator = GetComponent<Animator>();
