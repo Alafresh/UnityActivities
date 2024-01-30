@@ -5,7 +5,7 @@ using UnityEngine.ParticleSystemJobs;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 3;
+    [SerializeField] private float _maxHealth = 10;
     [SerializeField] private ParticleSystem _deathEffect, hitEffect;
     private float _currentHealth;
 

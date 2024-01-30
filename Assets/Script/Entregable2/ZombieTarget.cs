@@ -10,7 +10,7 @@ public class ZombieTarget : MonoBehaviour
     private GameObject _target;
     private NavMeshAgent _agent;
     private Animator _anim;
-
+    private float _health = 5;
 
     private void Awake()
     {
@@ -42,6 +42,14 @@ public class ZombieTarget : MonoBehaviour
             _anim.SetBool("walk", false);
             _target.GetComponent<Player>().GetDamage();
             Debug.Log("Muere");
+        }
+    }
+    public void ZombieGetDamaged()
+    {
+        _health -= 1;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

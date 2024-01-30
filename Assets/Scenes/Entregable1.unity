@@ -1206,6 +1206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 944817678}
+  - {fileID: 112177419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &58549351
@@ -2637,6 +2638,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 107347432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &112177418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112177419}
+  - component: {fileID: 112177420}
+  m_Layer: 0
+  m_Name: ZombieSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112177419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112177418}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.168, y: 1.607, z: 52.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 56414648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &112177420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112177418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d677d049787e054e9e87f0d7d28cd4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zombiePrefab: {fileID: 8247225737941646496, guid: 451d8d75007077b4e9f4a94692770c77,
+    type: 3}
+  _spawnAmount: 1
 --- !u!1001 &112363259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52152,12 +52200,7 @@ PrefabInstance:
     - target: {fileID: 4169727341259565170, guid: 451d8d75007077b4e9f4a94692770c77,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5196617615289101919, guid: 451d8d75007077b4e9f4a94692770c77,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9151173636866062362, guid: 451d8d75007077b4e9f4a94692770c77,
         type: 3}

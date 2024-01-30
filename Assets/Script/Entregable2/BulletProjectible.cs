@@ -35,6 +35,7 @@ public class BulletProjectible : MonoBehaviour
             // Crea el efecto de sangre y destruye el proyectil.
             GameObject vfx = Instantiate(_vfxBlood, transform.position, Quaternion.identity);
             Destroy(vfx, 2f);
+            other.GetComponent<ZombieTarget>().ZombieGetDamaged();
         }
         // Si el proyectil no está dentro del volumen, crea el efecto de impacto de bala.
         else if (!IsWithinVolume())
