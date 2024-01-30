@@ -146,7 +146,7 @@ public class ThirdPersonShooterController : MonoBehaviour
                 {
                     // Crear y lanzar un proyectil en la dirección del apuntado.
                     Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-                    Vector3 force = aimDir * 400f;
+                    Vector3 force = aimDir * 800f;
                     bulletProjectible.Activate(spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up), force);
                     bulletProjectible.Deactivate();
 
