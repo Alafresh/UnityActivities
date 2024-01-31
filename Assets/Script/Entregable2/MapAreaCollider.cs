@@ -1,9 +1,12 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapAreaCollider : MonoBehaviour
 {
+    public event EventHandler OnPlayerEnter;
+    public event EventHandler OnPlayerExit;
+
     private List<PlayerMapArea> playerMapAreasList = new List<PlayerMapArea>();
 
     private void OnTriggerEnter(Collider collider)
@@ -11,6 +14,7 @@ public class MapAreaCollider : MonoBehaviour
         if (collider.TryGetComponent<PlayerMapArea>(out PlayerMapArea playerMapArea))
         {
             playerMapAreasList.Add(playerMapArea);
+            OnPlayerEnter?.Invoke(this, EventArgs.Empty);
         }
     }
     private void OnTriggerExit(Collider collider)
@@ -18,6 +22,7 @@ public class MapAreaCollider : MonoBehaviour
         if (collider.TryGetComponent<PlayerMapArea>(out PlayerMapArea playerMapArea))
         {
             playerMapAreasList.Remove(playerMapArea);
+            OnPlayerExit?.Invoke(this, EventArgs.Empty);
         }
     }
 

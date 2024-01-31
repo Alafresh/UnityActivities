@@ -1,10 +1,14 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapArea : MonoBehaviour
 {
+    public event EventHandler OnPlayerEnter;
+    public event EventHandler OnPlayerExit;
+
     public enum State
     {
         Neutral,
@@ -23,9 +27,29 @@ public class MapArea : MonoBehaviour
             if (mapAreaCollider != null)
             {
                 m_Colliders.Add(mapAreaCollider);
+                mapAreaCollider.OnPlayerEnter += MapAreaCollider_OnPlayerEnter;
+                mapAreaCollider.OnPlayerExit += MapAreaCollider_OnPlayerExit;
             }
         }
         m_State = State.Neutral;
+    }
+    private void MapAreaCollider_OnPlayerEnter(object sender, EventArgs e)
+    {
+        OnPlayerEnter?.Invoke(this, EventArgs.Empty);
+    }
+    private void MapAreaCollider_OnPlayerExit(object sender, EventArgs e)
+    {
+        bool hasPlayerInside = false;
+        foreach(MapAreaCollider mapAreaCollider in m_Colliders)
+        {
+            if(mapAreaCollider.GetPlayerMapAreasList().Count > 0)
+            {
+                hasPlayerInside = true;
+            }
+            if (! hasPlayerInside ) {
+                OnPlayerExit?.Invoke(this, EventArgs.Empty);
+            }
+        }
     }
     private void Update()
     {
@@ -58,5 +82,9 @@ public class MapArea : MonoBehaviour
             case State.Captured:
                 break;
         }
+    }
+    public float GetProgress()
+    {
+        return progress;
     }
 }
