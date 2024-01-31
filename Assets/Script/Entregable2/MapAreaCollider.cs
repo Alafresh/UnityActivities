@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapAreaCollider : MonoBehaviour
 {
-    private List<PlayerMapArea> playerMapAreasList;
+    private List<PlayerMapArea> playerMapAreasList = new List<PlayerMapArea>();
 
     private void OnTriggerEnter(Collider collider)
     {
